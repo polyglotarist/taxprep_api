@@ -1,0 +1,437 @@
+2025-09-25 20:09:56.663 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-25 20:09:56.683 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-25 20:09:56.683 -07:00 [INF] Hosting environment: Development
+2025-09-25 20:09:56.683 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-25 20:10:29.426 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/index.html - null null
+2025-09-25 20:10:29.501 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/index.html - 200 null text/html;charset=utf-8 76.5185ms
+2025-09-25 20:10:29.522 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/swagger-ui-bundle.js - null null
+2025-09-25 20:10:29.522 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/swagger-ui.css - null null
+2025-09-25 20:10:29.522 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-25 20:10:29.522 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/index.css - null null
+2025-09-25 20:10:29.522 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/index.js - null null
+2025-09-25 20:10:29.526 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/index.js - 200 null application/javascript;charset=utf-8 5.351ms
+2025-09-25 20:10:29.532 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/swagger-ui.css - 200 23647 text/css 11.1177ms
+2025-09-25 20:10:29.532 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/index.css - 200 152 text/css 11.0733ms
+2025-09-25 20:10:29.537 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 15.6111ms
+2025-09-25 20:10:29.537 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 15.7607ms
+2025-09-25 20:10:29.638 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/v1/swagger.json - null null
+2025-09-25 20:10:29.642 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/favicon-32x32.png - null null
+2025-09-25 20:10:29.643 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/favicon-32x32.png - 200 628 image/png 1.193ms
+2025-09-25 20:10:29.643 -07:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-25 20:10:29.694 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 56.069ms
+2025-09-25 20:10:46.864 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 78
+2025-09-25 20:10:46.872 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:10:47.371 -07:00 [INF] Executed DbCommand (41ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:10:47.449 -07:00 [INF] Executed DbCommand (29ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 20:10:47.459 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:10:47.461 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 20:10:47.462 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:10:47.464 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 599.6956ms
+2025-09-25 20:12:12.924 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 88
+2025-09-25 20:12:12.925 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:12:12.968 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:12:12.976 -07:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 20:12:12.977 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:12:12.977 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 20:12:12.977 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:12:12.977 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 53.4907ms
+2025-09-25 20:12:59.645 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-25 20:12:59.646 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-25 20:12:59.705 -07:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-25 20:12:59.707 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 20:12:59.709 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-25 20:12:59.711 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-25 20:12:59.711 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 65.3745ms
+2025-09-25 20:14:16.754 -07:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5021/clients/2 - null null
+2025-09-25 20:14:16.755 -07:00 [INF] Executing endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:14:16.802 -07:00 [INF] Executed DbCommand (32ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+WHERE [c].[Id] = @__id_0
+2025-09-25 20:14:16.855 -07:00 [INF] Executed DbCommand (36ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Clients]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-09-25 20:14:16.861 -07:00 [INF] Setting HTTP status code 204.
+2025-09-25 20:14:16.861 -07:00 [INF] Executed endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:14:16.861 -07:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5021/clients/2 - 204 null null 107.7462ms
+2025-09-25 20:14:22.121 -07:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5021/clients/2 - null null
+2025-09-25 20:14:22.121 -07:00 [INF] Executing endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:14:22.128 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+WHERE [c].[Id] = @__id_0
+2025-09-25 20:14:22.129 -07:00 [INF] Setting HTTP status code 404.
+2025-09-25 20:14:22.129 -07:00 [INF] Executed endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:14:22.129 -07:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5021/clients/2 - 404 0 null 8.0222ms
+2025-09-25 20:26:24.100 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 88
+2025-09-25 20:26:24.105 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:26:24.171 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:26:24.179 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 20:26:24.180 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:26:24.180 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 20:26:24.180 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:26:24.180 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 80.5713ms
+2025-09-25 20:26:25.944 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 88
+2025-09-25 20:26:25.944 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:26:25.952 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:26:25.953 -07:00 [INF] Setting HTTP status code 409.
+2025-09-25 20:26:25.954 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-25 20:26:25.955 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:26:25.955 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 409 null application/json; charset=utf-8 11.4987ms
+2025-09-25 20:27:15.512 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 87
+2025-09-25 20:27:15.513 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:27:15.522 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:27:15.533 -07:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 20:27:15.534 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:27:15.534 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 20:27:15.535 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:27:15.535 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 23.4648ms
+2025-09-25 20:27:51.794 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-25 20:27:51.800 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-25 20:27:51.818 -07:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-25 20:27:51.818 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 20:27:51.819 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-25 20:27:51.820 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-25 20:27:51.820 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 25.635ms
+2025-09-25 20:28:59.784 -07:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5021/clients/3 - null null
+2025-09-25 20:28:59.787 -07:00 [INF] Executing endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:28:59.804 -07:00 [INF] Executed DbCommand (11ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+WHERE [c].[Id] = @__id_0
+2025-09-25 20:28:59.821 -07:00 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Clients]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-09-25 20:28:59.822 -07:00 [INF] Setting HTTP status code 204.
+2025-09-25 20:28:59.822 -07:00 [INF] Executed endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:28:59.822 -07:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5021/clients/3 - 204 null null 38.0902ms
+2025-09-25 20:29:01.295 -07:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5021/clients/3 - null null
+2025-09-25 20:29:01.295 -07:00 [INF] Executing endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:29:01.305 -07:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+WHERE [c].[Id] = @__id_0
+2025-09-25 20:29:01.306 -07:00 [INF] Setting HTTP status code 404.
+2025-09-25 20:29:01.307 -07:00 [INF] Executed endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:29:01.307 -07:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5021/clients/3 - 404 0 null 12.6011ms
+2025-09-25 20:29:22.886 -07:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5021/clients/3 - null null
+2025-09-25 20:29:22.887 -07:00 [INF] Executing endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:29:22.894 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+WHERE [c].[Id] = @__id_0
+2025-09-25 20:29:22.895 -07:00 [INF] Setting HTTP status code 404.
+2025-09-25 20:29:22.895 -07:00 [INF] Executed endpoint 'HTTP: DELETE /clients/{id:int}'
+2025-09-25 20:29:22.896 -07:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5021/clients/3 - 404 0 null 9.9772ms
+2025-09-25 20:29:50.585 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/index.html - null null
+2025-09-25 20:29:50.586 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/index.html - 200 null text/html;charset=utf-8 1.6372ms
+2025-09-25 20:29:50.720 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/v1/swagger.json - null null
+2025-09-25 20:29:50.733 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.6862ms
+2025-09-25 20:30:02.227 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-25 20:30:02.228 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-25 20:30:02.246 -07:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-25 20:30:02.247 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 20:30:02.247 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-25 20:30:02.248 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-25 20:30:02.248 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 21.0259ms
+2025-09-25 20:33:24.745 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/services - application/json 38
+2025-09-25 20:33:24.747 -07:00 [INF] Executing endpoint 'HTTP: POST /services/'
+2025-09-25 20:33:24.798 -07:00 [INF] Executed DbCommand (23ms) [Parameters=[@__code_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Code] = @__code_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:33:24.799 -07:00 [INF] Setting HTTP status code 409.
+2025-09-25 20:33:24.799 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-25 20:33:24.799 -07:00 [INF] Executed endpoint 'HTTP: POST /services/'
+2025-09-25 20:33:24.800 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/services - 409 null application/json; charset=utf-8 54.6714ms
+2025-09-25 20:33:26.561 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/services - application/json 38
+2025-09-25 20:33:26.562 -07:00 [INF] Executing endpoint 'HTTP: POST /services/'
+2025-09-25 20:33:26.578 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__code_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Code] = @__code_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:33:26.578 -07:00 [INF] Setting HTTP status code 409.
+2025-09-25 20:33:26.578 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-25 20:33:26.579 -07:00 [INF] Executed endpoint 'HTTP: POST /services/'
+2025-09-25 20:33:26.579 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/services - 409 null application/json; charset=utf-8 17.5975ms
+2025-09-25 20:35:01.463 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/engagements - application/json 74
+2025-09-25 20:35:01.464 -07:00 [INF] Executing endpoint 'HTTP: POST /engagements/'
+2025-09-25 20:35:01.499 -07:00 [INF] Executed DbCommand (18ms) [Parameters=[@__clientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Id] = @__clientId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:35:01.500 -07:00 [INF] Setting HTTP status code 400.
+2025-09-25 20:35:01.500 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-25 20:35:01.500 -07:00 [INF] Executed endpoint 'HTTP: POST /engagements/'
+2025-09-25 20:35:01.501 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/engagements - 400 null application/json; charset=utf-8 37.6161ms
+2025-09-25 20:42:36.777 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 88
+2025-09-25 20:42:36.781 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:42:36.846 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:42:36.855 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 20:42:36.855 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:42:36.856 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 20:42:36.856 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:42:36.856 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 80.095ms
+2025-09-25 20:43:30.879 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 88
+2025-09-25 20:43:30.881 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 20:43:30.888 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:43:30.900 -07:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 20:43:30.901 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:43:30.901 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 20:43:30.901 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 20:43:30.901 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 21.7683ms
+2025-09-25 20:43:51.757 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/services - application/json 38
+2025-09-25 20:43:51.758 -07:00 [INF] Executing endpoint 'HTTP: POST /services/'
+2025-09-25 20:43:51.774 -07:00 [INF] Executed DbCommand (12ms) [Parameters=[@__code_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Code] = @__code_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:43:51.775 -07:00 [INF] Setting HTTP status code 409.
+2025-09-25 20:43:51.776 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-25 20:43:51.776 -07:00 [INF] Executed endpoint 'HTTP: POST /services/'
+2025-09-25 20:43:51.776 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/services - 409 null application/json; charset=utf-8 18.9577ms
+2025-09-25 20:44:18.208 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/services - application/json 38
+2025-09-25 20:44:18.210 -07:00 [INF] Executing endpoint 'HTTP: POST /services/'
+2025-09-25 20:44:18.216 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[@__code_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Code] = @__code_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:44:18.264 -07:00 [INF] Executed DbCommand (26ms) [Parameters=[@p0='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Services] ([BaseFee], [Code])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1);
+2025-09-25 20:44:18.267 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:44:18.269 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-25 20:44:18.271 -07:00 [INF] Executed endpoint 'HTTP: POST /services/'
+2025-09-25 20:44:18.271 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/services - 201 null application/json; charset=utf-8 62.8894ms
+2025-09-25 20:44:48.983 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/services - application/json 37
+2025-09-25 20:44:48.985 -07:00 [INF] Executing endpoint 'HTTP: POST /services/'
+2025-09-25 20:44:48.993 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@__code_0='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Code] = @__code_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 20:44:49.003 -07:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Services] ([BaseFee], [Code])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1);
+2025-09-25 20:44:49.003 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 20:44:49.003 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-25 20:44:49.004 -07:00 [INF] Executed endpoint 'HTTP: POST /services/'
+2025-09-25 20:44:49.004 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/services - 201 null application/json; charset=utf-8 20.4779ms
+2025-09-25 20:45:05.645 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services - null null
+2025-09-25 20:45:05.646 -07:00 [INF] Executing endpoint 'HTTP: GET /services/'
+2025-09-25 20:45:05.683 -07:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+ORDER BY [s].[Code]
+2025-09-25 20:45:05.685 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 20:45:05.686 -07:00 [INF] Writing value of type 'List`1' as Json.
+2025-09-25 20:45:05.687 -07:00 [INF] Executed endpoint 'HTTP: GET /services/'
+2025-09-25 20:45:05.687 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services - 200 null application/json; charset=utf-8 42.0477ms
+2025-09-25 20:48:59.725 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=4&serviceId=2&year=2024 - null null
+2025-09-25 20:48:59.726 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-25 20:48:59.759 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-25 20:48:59.759 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .Where(e => (int?)e.ServiceId == __serviceId_1)
+    .Where(e => (int?)(int)e.TaxYear == (int?)__year_2)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-25 20:48:59.768 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=4&serviceId=2&year=2024 - 500 null text/plain; charset=utf-8 42.9879ms
+2025-09-25 20:51:01.516 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/ - null null
+2025-09-25 20:51:01.517 -07:00 [INF] Executing endpoint 'HTTP: GET /'
+2025-09-25 20:51:01.518 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 20:51:01.521 -07:00 [INF] Writing value of type '<>f__AnonymousType8`2' as Json.
+2025-09-25 20:51:01.523 -07:00 [INF] Executed endpoint 'HTTP: GET /'
+2025-09-25 20:51:01.523 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/ - 200 null application/json; charset=utf-8 7.3492ms
+2025-09-25 21:16:33.153 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/ - null null
+2025-09-25 21:16:33.155 -07:00 [INF] Executing endpoint 'HTTP: GET /'
+2025-09-25 21:16:33.155 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 21:16:33.156 -07:00 [INF] Writing value of type '<>f__AnonymousType8`2' as Json.
+2025-09-25 21:16:33.156 -07:00 [INF] Executed endpoint 'HTTP: GET /'
+2025-09-25 21:16:33.156 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/ - 200 null application/json; charset=utf-8 3.1116ms
+2025-09-25 21:16:34.216 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/ - null null
+2025-09-25 21:16:34.216 -07:00 [INF] Executing endpoint 'HTTP: GET /'
+2025-09-25 21:16:34.217 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 21:16:34.217 -07:00 [INF] Writing value of type '<>f__AnonymousType8`2' as Json.
+2025-09-25 21:16:34.217 -07:00 [INF] Executed endpoint 'HTTP: GET /'
+2025-09-25 21:16:34.217 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/ - 200 null application/json; charset=utf-8 0.9411ms
+2025-09-25 21:16:39.977 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/ - null null
+2025-09-25 21:16:39.977 -07:00 [INF] Executing endpoint 'HTTP: GET /'
+2025-09-25 21:16:39.978 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 21:16:39.978 -07:00 [INF] Writing value of type '<>f__AnonymousType8`2' as Json.
+2025-09-25 21:16:39.978 -07:00 [INF] Executed endpoint 'HTTP: GET /'
+2025-09-25 21:16:39.978 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/ - 200 null application/json; charset=utf-8 0.794ms
+2025-09-25 21:28:44.838 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 88
+2025-09-25 21:28:44.841 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-25 21:28:44.890 -07:00 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-25 21:28:44.895 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-25 21:28:44.896 -07:00 [INF] Setting HTTP status code 201.
+2025-09-25 21:28:44.896 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-25 21:28:44.896 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-25 21:28:44.896 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 58.7707ms
+2025-09-25 21:29:05.829 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-25 21:29:05.830 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-25 21:29:05.838 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-25 21:29:05.839 -07:00 [INF] Setting HTTP status code 200.
+2025-09-25 21:29:05.839 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-25 21:29:05.839 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-25 21:29:05.839 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 10.2485ms
+2025-09-25 21:29:38.822 -07:00 [INF] Application is shutting down...

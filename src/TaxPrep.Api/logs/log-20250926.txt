@@ -1,0 +1,723 @@
+2025-09-26 07:30:17.444 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-26 07:30:17.464 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-26 07:30:17.464 -07:00 [INF] Hosting environment: Development
+2025-09-26 07:30:17.464 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-26 07:30:55.728 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:30:55.794 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:30:56.255 -07:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:30:56.265 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:30:56.267 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:30:56.270 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:30:56.273 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 545.5107ms
+2025-09-26 07:34:28.943 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 85
+2025-09-26 07:34:28.947 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 07:34:29.024 -07:00 [INF] Executed DbCommand (11ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:34:29.077 -07:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-26 07:34:29.085 -07:00 [INF] Setting HTTP status code 201.
+2025-09-26 07:34:29.085 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-26 07:34:29.085 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 07:34:29.086 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 142.8002ms
+2025-09-26 07:35:08.852 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:35:08.854 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:35:08.875 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:35:08.876 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:35:08.876 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:35:08.876 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:35:08.876 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 23.9387ms
+2025-09-26 07:37:44.924 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/engagements - application/json 56
+2025-09-26 07:37:44.925 -07:00 [INF] Executing endpoint 'HTTP: POST /engagements/'
+2025-09-26 07:37:44.939 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__clientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Id] = @__clientId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:37:44.962 -07:00 [INF] Executed DbCommand (19ms) [Parameters=[@__serviceId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Id] = @__serviceId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:37:44.982 -07:00 [INF] Executed DbCommand (11ms) [Parameters=[@__clientId_0='?' (DbType = Int32), @__serviceId_1='?' (DbType = Int32), @__taxYear_2='?' (DbType = Int16)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Engagements] AS [e]
+        WHERE [e].[ClientId] = @__clientId_0 AND [e].[ServiceId] = @__serviceId_1 AND [e].[TaxYear] = @__taxYear_2) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:37:45.027 -07:00 [INF] Executed DbCommand (22ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (Size = 20), @p4='?' (DbType = Int16)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Engagements] ([ClientId], [ServiceId], [SignedAtUtc], [Status], [TaxYear])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-09-26 07:37:45.030 -07:00 [INF] Setting HTTP status code 201.
+2025-09-26 07:37:45.032 -07:00 [INF] Writing value of type 'EngagementResponseDto' as Json.
+2025-09-26 07:37:45.033 -07:00 [INF] Executed endpoint 'HTTP: POST /engagements/'
+2025-09-26 07:37:45.033 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/engagements - 201 null application/json; charset=utf-8 109.3664ms
+2025-09-26 07:38:38.459 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=8&serviceId=1&year=2023 - null null
+2025-09-26 07:38:38.459 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:38:38.482 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:38:38.484 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .Where(e => (int?)e.ServiceId == __serviceId_1)
+    .Where(e => (int?)(int)e.TaxYear == (int?)__year_2)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:38:38.491 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=8&serviceId=1&year=2023 - 500 null text/plain; charset=utf-8 32.4627ms
+2025-09-26 07:39:19.090 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements/1 - null null
+2025-09-26 07:39:19.091 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/{id:int}'
+2025-09-26 07:39:19.115 -07:00 [INF] Executed DbCommand (13ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[ClientId], [e].[ServiceId], [e].[SignedAtUtc], [e].[Status], [e].[TaxYear]
+FROM [Engagements] AS [e]
+WHERE [e].[Id] = @__id_0
+2025-09-26 07:39:19.118 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:39:19.118 -07:00 [INF] Writing value of type 'EngagementResponseDto' as Json.
+2025-09-26 07:39:19.118 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/{id:int}'
+2025-09-26 07:39:19.118 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements/1 - 200 null application/json; charset=utf-8 28.6946ms
+2025-09-26 07:41:07.179 -07:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5021/engagements/1 - application/json 68
+2025-09-26 07:41:07.180 -07:00 [INF] Executing endpoint 'HTTP: PATCH /engagements/{id:int}'
+2025-09-26 07:41:07.189 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[ClientId], [e].[ServiceId], [e].[SignedAtUtc], [e].[Status], [e].[TaxYear]
+FROM [Engagements] AS [e]
+WHERE [e].[Id] = @__id_0
+2025-09-26 07:41:07.220 -07:00 [INF] Executed DbCommand (26ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Engagements] SET [SignedAtUtc] = @p0, [Status] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2025-09-26 07:41:07.224 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:41:07.226 -07:00 [INF] Writing value of type '<>f__AnonymousType9`1' as Json.
+2025-09-26 07:41:07.226 -07:00 [INF] Executed endpoint 'HTTP: PATCH /engagements/{id:int}'
+2025-09-26 07:41:07.227 -07:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5021/engagements/1 - 200 null application/json; charset=utf-8 47.3757ms
+2025-09-26 07:41:27.479 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements/1 - null null
+2025-09-26 07:41:27.479 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/{id:int}'
+2025-09-26 07:41:27.485 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[ClientId], [e].[ServiceId], [e].[SignedAtUtc], [e].[Status], [e].[TaxYear]
+FROM [Engagements] AS [e]
+WHERE [e].[Id] = @__id_0
+2025-09-26 07:41:27.486 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:41:27.486 -07:00 [INF] Writing value of type 'EngagementResponseDto' as Json.
+2025-09-26 07:41:27.487 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/{id:int}'
+2025-09-26 07:41:27.487 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements/1 - 200 null application/json; charset=utf-8 8.0886ms
+2025-09-26 07:45:13.099 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/1 - null null
+2025-09-26 07:45:13.101 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:45:13.117 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 07:45:13.126 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:45:13.127 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 07:45:13.128 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:45:13.129 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/1 - 200 null application/json; charset=utf-8 29.165ms
+2025-09-26 07:45:21.906 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/2 - null null
+2025-09-26 07:45:21.906 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:45:21.910 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 07:45:21.911 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:45:21.911 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 07:45:21.911 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:45:21.911 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/2 - 200 null application/json; charset=utf-8 5.6821ms
+2025-09-26 07:45:31.210 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/3 - null null
+2025-09-26 07:45:31.211 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:45:31.216 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 07:45:31.216 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:45:31.217 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 07:45:31.217 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:45:31.217 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/3 - 200 null application/json; charset=utf-8 6.8346ms
+2025-09-26 07:47:25.355 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services - null null
+2025-09-26 07:47:25.356 -07:00 [INF] Executing endpoint 'HTTP: GET /services/'
+2025-09-26 07:47:25.367 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+ORDER BY [s].[Code]
+2025-09-26 07:47:25.367 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:47:25.369 -07:00 [INF] Writing value of type 'List`1' as Json.
+2025-09-26 07:47:25.370 -07:00 [INF] Executed endpoint 'HTTP: GET /services/'
+2025-09-26 07:47:25.370 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services - 200 null application/json; charset=utf-8 15.3037ms
+2025-09-26 07:48:17.845 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/1 - null null
+2025-09-26 07:48:17.845 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:48:17.851 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 07:48:17.851 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:48:17.852 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 07:48:17.852 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:48:17.852 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/1 - 200 null application/json; charset=utf-8 7.0782ms
+2025-09-26 07:48:30.665 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/2 - null null
+2025-09-26 07:48:30.665 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:48:30.672 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 07:48:30.673 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:48:30.673 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 07:48:30.673 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:48:30.673 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/2 - 200 null application/json; charset=utf-8 8.0669ms
+2025-09-26 07:48:39.924 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/3 - null null
+2025-09-26 07:48:39.925 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:48:39.929 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 07:48:39.929 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:48:39.929 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 07:48:39.929 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 07:48:39.929 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/3 - 200 null application/json; charset=utf-8 4.7305ms
+2025-09-26 07:50:08.976 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 85
+2025-09-26 07:50:08.976 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 07:50:08.977 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 07:50:08.978 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Failed to read parameter "CreateClientDto dto" from the request body as JSON.
+ ---> System.Text.Json.JsonException: '"' is an invalid end of a number. Expected a delimiter. Path: $.phone | LineNumber: 3 | BytePositionInLine: 20.
+ ---> System.Text.Json.JsonReaderException: '"' is an invalid end of a number. Expected a delimiter. LineNumber: 3 | BytePositionInLine: 20.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.TryGetNumber(ReadOnlySpan`1 data, Int32& consumed)
+   at System.Text.Json.Utf8JsonReader.ConsumeNumber()
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.ReadConstructorArgumentsWithContinuation(ReadStack& state, Utf8JsonReader& reader, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize(ReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.Log.InvalidJsonRequestBody(HttpContext httpContext, String parameterTypeName, String parameterName, Exception exception, Boolean shouldThrow)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass101_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:50:08.985 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 400 null text/plain; charset=utf-8 8.8563ms
+2025-09-26 07:50:30.924 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:50:30.931 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:50:30.937 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:50:30.937 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:50:30.937 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:50:30.937 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:50:30.937 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 12.6641ms
+2025-09-26 07:50:50.972 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:50:50.973 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:50:50.979 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:50:50.979 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:50:50.979 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:50:50.979 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:50:50.980 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 7.1078ms
+2025-09-26 07:50:52.981 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:50:52.981 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:50:52.985 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:50:52.986 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:50:52.986 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:50:52.986 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:50:52.986 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 5.1918ms
+2025-09-26 07:51:14.305 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:51:14.305 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:51:14.310 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:51:14.310 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:51:14.310 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:51:14.310 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:51:14.310 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 5.6413ms
+2025-09-26 07:51:48.240 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 85
+2025-09-26 07:51:48.241 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 07:51:48.241 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 07:51:48.241 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Failed to read parameter "CreateClientDto dto" from the request body as JSON.
+ ---> System.Text.Json.JsonException: '"' is an invalid end of a number. Expected a delimiter. Path: $.phone | LineNumber: 3 | BytePositionInLine: 20.
+ ---> System.Text.Json.JsonReaderException: '"' is an invalid end of a number. Expected a delimiter. LineNumber: 3 | BytePositionInLine: 20.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.TryGetNumber(ReadOnlySpan`1 data, Int32& consumed)
+   at System.Text.Json.Utf8JsonReader.ConsumeNumber()
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.ReadConstructorArgumentsWithContinuation(ReadStack& state, Utf8JsonReader& reader, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Converters.ObjectWithParameterizedConstructorConverter`1.OnTryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value)
+   at System.Text.Json.Serialization.JsonConverter`1.TryRead(Utf8JsonReader& reader, Type typeToConvert, JsonSerializerOptions options, ReadStack& state, T& value, Boolean& isPopulatedValue)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.ContinueDeserialize(ReadBufferState& bufferState, JsonReaderState& jsonReaderState, ReadStack& readStack, T& value)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.DeserializeAsObjectAsync(Stream utf8Json, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync(HttpRequest request, JsonTypeInfo jsonTypeInfo, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.Log.InvalidJsonRequestBody(HttpContext httpContext, String parameterTypeName, String parameterName, Exception exception, Boolean shouldThrow)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<HandleRequestBodyAndCompileRequestDelegateForJson>g__TryReadBodyAsync|101_0(HttpContext httpContext, Type bodyType, String parameterTypeName, String parameterName, Boolean allowEmptyRequestBody, Boolean throwOnBadRequest, JsonTypeInfo jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass101_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:51:48.243 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 400 null text/plain; charset=utf-8 2.6922ms
+2025-09-26 07:52:17.289 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:52:17.290 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:52:17.294 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:52:17.295 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:52:17.295 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:52:17.295 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:52:17.295 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 5.8596ms
+2025-09-26 07:52:34.117 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:52:34.117 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:52:34.121 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:52:34.121 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:52:34.122 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:52:34.122 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:52:34.122 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 5.0669ms
+2025-09-26 07:54:22.642 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 89
+2025-09-26 07:54:22.644 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 07:54:22.649 -07:00 [INF] Executed DbCommand (2ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:54:22.657 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-26 07:54:22.658 -07:00 [INF] Setting HTTP status code 201.
+2025-09-26 07:54:22.658 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-26 07:54:22.658 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 07:54:22.658 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 16.3008ms
+2025-09-26 07:54:46.872 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 07:54:46.873 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 07:54:46.877 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 07:54:46.878 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:54:46.878 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 07:54:46.878 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 07:54:46.878 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 5.992ms
+2025-09-26 07:56:10.260 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/engagements - application/json 55
+2025-09-26 07:56:10.261 -07:00 [INF] Executing endpoint 'HTTP: POST /engagements/'
+2025-09-26 07:56:10.267 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__clientId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Id] = @__clientId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:56:10.271 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[@__serviceId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Services] AS [s]
+        WHERE [s].[Id] = @__serviceId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:56:10.274 -07:00 [INF] Executed DbCommand (2ms) [Parameters=[@__clientId_0='?' (DbType = Int32), @__serviceId_1='?' (DbType = Int32), @__taxYear_2='?' (DbType = Int16)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Engagements] AS [e]
+        WHERE [e].[ClientId] = @__clientId_0 AND [e].[ServiceId] = @__serviceId_1 AND [e].[TaxYear] = @__taxYear_2) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 07:56:10.279 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (Size = 20), @p4='?' (DbType = Int16)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Engagements] ([ClientId], [ServiceId], [SignedAtUtc], [Status], [TaxYear])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-09-26 07:56:10.280 -07:00 [INF] Setting HTTP status code 201.
+2025-09-26 07:56:10.280 -07:00 [INF] Writing value of type 'EngagementResponseDto' as Json.
+2025-09-26 07:56:10.280 -07:00 [INF] Executed endpoint 'HTTP: POST /engagements/'
+2025-09-26 07:56:10.280 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/engagements - 201 null application/json; charset=utf-8 20.2864ms
+2025-09-26 07:56:40.017 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - null null
+2025-09-26 07:56:40.018 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:56:40.022 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:56:40.022 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .Where(e => (int?)e.ServiceId == __serviceId_1)
+    .Where(e => (int?)(int)e.TaxYear == (int?)__year_2)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:56:40.024 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - 500 null text/plain; charset=utf-8 6.1315ms
+2025-09-26 07:57:02.979 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - null null
+2025-09-26 07:57:02.979 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:57:02.981 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:57:02.982 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .Where(e => (int?)e.ServiceId == __serviceId_1)
+    .Where(e => (int?)(int)e.TaxYear == (int?)__year_2)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:57:02.983 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - 500 null text/plain; charset=utf-8 4.0542ms
+2025-09-26 07:57:23.400 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - null null
+2025-09-26 07:57:23.400 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:57:23.401 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:57:23.402 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .Where(e => (int?)e.ServiceId == __serviceId_1)
+    .Where(e => (int?)(int)e.TaxYear == (int?)__year_2)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:57:23.403 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - 500 null text/plain; charset=utf-8 3.0057ms
+2025-09-26 07:57:52.124 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - null null
+2025-09-26 07:57:52.125 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:57:52.127 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:57:52.128 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .Where(e => (int?)e.ServiceId == __serviceId_1)
+    .Where(e => (int?)(int)e.TaxYear == (int?)__year_2)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:57:52.129 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=9&serviceId=1&year=2025 - 500 null text/plain; charset=utf-8 4.463ms
+2025-09-26 07:58:25.754 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/engagements?clientId=9 - null null
+2025-09-26 07:58:25.755 -07:00 [INF] Executing endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:58:25.758 -07:00 [INF] Executed endpoint 'HTTP: GET /engagements/'
+2025-09-26 07:58:25.758 -07:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The LINQ expression 'DbSet<Engagement>()
+    .Where(e => (int?)e.ClientId == __clientId_0)
+    .OrderBy(e => e
+        .ToDto().TaxYear)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Program.<>c.<<Main>$>b__0_13(IEngagementRepository repo, Nullable`1 clientId, Nullable`1 serviceId, Nullable`1 year) in /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api/Program.cs:line 135
+   at lambda_method11(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-26 07:58:25.759 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/engagements?clientId=9 - 500 null text/plain; charset=utf-8 5.3796ms
+2025-09-26 07:58:29.532 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/index.html - null null
+2025-09-26 07:58:29.573 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/index.html - 200 null text/html;charset=utf-8 41.507ms
+2025-09-26 07:58:29.675 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/swagger/v1/swagger.json - null null
+2025-09-26 07:58:29.682 -07:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-26 07:58:29.735 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 60.4193ms
+2025-09-26 07:59:24.356 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services - null null
+2025-09-26 07:59:24.357 -07:00 [INF] Executing endpoint 'HTTP: GET /services/'
+2025-09-26 07:59:24.361 -07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+ORDER BY [s].[Code]
+2025-09-26 07:59:24.362 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 07:59:24.362 -07:00 [INF] Writing value of type 'List`1' as Json.
+2025-09-26 07:59:24.362 -07:00 [INF] Executed endpoint 'HTTP: GET /services/'
+2025-09-26 07:59:24.362 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services - 200 null application/json; charset=utf-8 6.3565ms
+2025-09-26 08:00:43.266 -07:00 [INF] Application is shutting down...
+2025-09-26 10:39:26.943 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-26 10:39:26.962 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-26 10:39:26.963 -07:00 [INF] Hosting environment: Development
+2025-09-26 10:39:26.963 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-26 10:39:32.446 -07:00 [INF] Application is shutting down...
+2025-09-26 10:49:16.990 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-26 10:49:17.010 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-26 10:49:17.010 -07:00 [INF] Hosting environment: Development
+2025-09-26 10:49:17.010 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-26 10:49:20.265 -07:00 [INF] Application is shutting down...
+2025-09-26 10:49:44.642 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-26 10:49:44.660 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-26 10:49:44.660 -07:00 [INF] Hosting environment: Development
+2025-09-26 10:49:44.660 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-26 10:49:48.733 -07:00 [INF] Application is shutting down...
+2025-09-26 11:30:58.663 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-26 11:30:58.682 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-26 11:30:58.682 -07:00 [INF] Hosting environment: Development
+2025-09-26 11:30:58.683 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-26 11:31:10.386 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/ - null null
+2025-09-26 11:31:10.446 -07:00 [INF] Executing endpoint 'HTTP: GET /'
+2025-09-26 11:31:10.447 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 11:31:10.448 -07:00 [INF] Writing value of type '<>f__AnonymousType8`2' as Json.
+2025-09-26 11:31:10.450 -07:00 [INF] Executed endpoint 'HTTP: GET /'
+2025-09-26 11:31:10.450 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/ - 200 null application/json; charset=utf-8 65.553ms
+2025-09-26 11:31:19.474 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/ - null null
+2025-09-26 11:31:19.476 -07:00 [INF] Executing endpoint 'HTTP: GET /'
+2025-09-26 11:31:19.477 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 11:31:19.477 -07:00 [INF] Writing value of type '<>f__AnonymousType8`2' as Json.
+2025-09-26 11:31:19.478 -07:00 [INF] Executed endpoint 'HTTP: GET /'
+2025-09-26 11:31:19.478 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/ - 200 null application/json; charset=utf-8 4.4547ms
+2025-09-26 11:44:10.061 -07:00 [INF] Application is shutting down...
+2025-09-26 12:59:58.482 -07:00 [INF] Now listening on: http://localhost:5021
+2025-09-26 12:59:58.501 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-26 12:59:58.502 -07:00 [INF] Hosting environment: Development
+2025-09-26 12:59:58.502 -07:00 [INF] Content root path: /Users/polyglot/revature_repos/SamirA-P1/TaxPrep/src/TaxPrep.Api
+2025-09-26 13:33:59.326 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/1 - null null
+2025-09-26 13:33:59.411 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 13:33:59.953 -07:00 [INF] Executed DbCommand (22ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 13:33:59.975 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 13:33:59.976 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 13:33:59.978 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 13:33:59.981 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/1 - 200 null application/json; charset=utf-8 656.3832ms
+2025-09-26 13:34:24.369 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services/2 - null null
+2025-09-26 13:34:24.374 -07:00 [INF] Executing endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 13:34:24.416 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-09-26 13:34:24.417 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 13:34:24.417 -07:00 [INF] Writing value of type 'ServiceResponseDto' as Json.
+2025-09-26 13:34:24.418 -07:00 [INF] Executed endpoint 'HTTP: GET /services/{id:int}'
+2025-09-26 13:34:24.418 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services/2 - 200 null application/json; charset=utf-8 49.3787ms
+2025-09-26 13:34:48.839 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services - null null
+2025-09-26 13:34:48.840 -07:00 [INF] Executing endpoint 'HTTP: GET /services/'
+2025-09-26 13:34:48.873 -07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+ORDER BY [s].[Code]
+2025-09-26 13:34:48.874 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 13:34:48.878 -07:00 [INF] Writing value of type 'List`1' as Json.
+2025-09-26 13:34:48.879 -07:00 [INF] Executed endpoint 'HTTP: GET /services/'
+2025-09-26 13:34:48.879 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services - 200 null application/json; charset=utf-8 40.364ms
+2025-09-26 13:35:30.402 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 13:35:30.403 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 13:35:30.425 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 13:35:30.427 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 13:35:30.428 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 13:35:30.431 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 13:35:30.432 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 29.3699ms
+2025-09-26 13:36:30.876 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 84
+2025-09-26 13:36:30.878 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 13:36:30.910 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 13:36:30.912 -07:00 [INF] Setting HTTP status code 409.
+2025-09-26 13:36:30.912 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-26 13:36:30.913 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 13:36:30.913 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 409 null application/json; charset=utf-8 37.0284ms
+2025-09-26 13:36:43.354 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 84
+2025-09-26 13:36:43.355 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 13:36:43.362 -07:00 [INF] Executed DbCommand (4ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 13:36:43.363 -07:00 [INF] Setting HTTP status code 409.
+2025-09-26 13:36:43.363 -07:00 [INF] Writing value of type 'String' as Json.
+2025-09-26 13:36:43.364 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 13:36:43.364 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 409 null application/json; charset=utf-8 10.0456ms
+2025-09-26 13:36:56.989 -07:00 [INF] Request starting HTTP/1.1 POST http://localhost:5021/clients - application/json 85
+2025-09-26 13:36:56.991 -07:00 [INF] Executing endpoint 'HTTP: POST /clients/'
+2025-09-26 13:36:57.003 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[@__email_0='?' (Size = 200)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]
+        WHERE [c].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-09-26 13:36:57.076 -07:00 [INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 200), @p2='?' (Size = 120), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Clients] ([CreatedAtUtc], [Email], [FullName], [Phone])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-26 13:36:57.088 -07:00 [INF] Setting HTTP status code 201.
+2025-09-26 13:36:57.088 -07:00 [INF] Writing value of type 'ClientResponseDto' as Json.
+2025-09-26 13:36:57.089 -07:00 [INF] Executed endpoint 'HTTP: POST /clients/'
+2025-09-26 13:36:57.092 -07:00 [INF] Request finished HTTP/1.1 POST http://localhost:5021/clients - 201 null application/json; charset=utf-8 102.6349ms
+2025-09-26 13:37:17.323 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/clients - null null
+2025-09-26 13:37:17.326 -07:00 [INF] Executing endpoint 'HTTP: GET /clients/'
+2025-09-26 13:37:17.334 -07:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[Email], [c].[FullName], [c].[Phone]
+FROM [Clients] AS [c]
+ORDER BY [c].[FullName]
+2025-09-26 13:37:17.335 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 13:37:17.335 -07:00 [INF] Writing value of type 'ListSelectIterator`2' as Json.
+2025-09-26 13:37:17.336 -07:00 [INF] Executed endpoint 'HTTP: GET /clients/'
+2025-09-26 13:37:17.336 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/clients - 200 null application/json; charset=utf-8 14.8064ms
+2025-09-26 13:37:46.825 -07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5021/services - null null
+2025-09-26 13:37:46.833 -07:00 [INF] Executing endpoint 'HTTP: GET /services/'
+2025-09-26 13:37:46.840 -07:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[BaseFee], [s].[Code]
+FROM [Services] AS [s]
+ORDER BY [s].[Code]
+2025-09-26 13:37:46.840 -07:00 [INF] Setting HTTP status code 200.
+2025-09-26 13:37:46.841 -07:00 [INF] Writing value of type 'List`1' as Json.
+2025-09-26 13:37:46.841 -07:00 [INF] Executed endpoint 'HTTP: GET /services/'
+2025-09-26 13:37:46.841 -07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5021/services - 200 null application/json; charset=utf-8 15.7675ms
+2025-09-26 13:52:04.737 -07:00 [INF] Application is shutting down...
