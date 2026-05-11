@@ -1,0 +1,25 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.swp
+
+## Test output
+TestResults/
+coveragereport/
+*.trx
+*.coverage
+*.cobertura.xml
+
+## Logs
+logs/
+*.log
+
+## Secrets
+*.env
+appsettings.Development.json
+
+## macOS
+.DS_Store
